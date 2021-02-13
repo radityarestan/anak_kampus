@@ -1,9 +1,38 @@
 import 'package:anak_kampus/components/login_button.dart';
 import 'package:anak_kampus/constant.dart';
+import 'package:anak_kampus/pages/prefence_page.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
+  @override
+  _LoginPageState createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  final GoogleSignIn _googleSignIn = GoogleSignIn(scopes: ['email']);
+
+  Future<void> _handleSignIn() async {
+    try {
+      await _googleSignIn.signIn();
+
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.setString('email', _googleSignIn.currentUser.email);
+      prefs.setString('displayName', _googleSignIn.currentUser.displayName);
+      prefs.setString('photoUrl', _googleSignIn.currentUser.photoUrl);
+
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => PreferencePage(),
+        ),
+      );
+    } catch (e) {
+      print(e);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -39,7 +68,9 @@ class LoginPage extends StatelessWidget {
                   height: 10.0,
                 ),
                 LoginButton(
-                  onTap: () {},
+                  onTap: () async {
+                    await _handleSignIn();
+                  },
                 ),
               ],
             ),

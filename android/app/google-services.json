@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "43381002997",
+    "project_id": "anak-kampus",
+    "storage_bucket": "anak-kampus.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:43381002997:android:092a359aef33d93c33abbc",
+        "android_client_info": {
+          "package_name": "com.radityarestan.anak_kampus"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "43381002997-7a0pljpkbqbtrbeasd6816jo5t6hghb3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA1EK3LM_IvORjVO2-NRXTSjZXpWzPUnSM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "43381002997-7a0pljpkbqbtrbeasd6816jo5t6hghb3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
