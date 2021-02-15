@@ -1,5 +1,6 @@
-import 'package:anak_kampus/components/login_button.dart';
+import 'package:anak_kampus/components/bottom_button.dart';
 import 'package:anak_kampus/constant.dart';
+import 'package:anak_kampus/pages/occupationpref.dart';
 import 'package:anak_kampus/pages/prefence_page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -22,10 +23,10 @@ class _LoginPageState extends State<LoginPage> {
       prefs.setString('displayName', _googleSignIn.currentUser.displayName);
       prefs.setString('photoUrl', _googleSignIn.currentUser.photoUrl);
 
-      Navigator.push(
+      Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (context) => PreferencePage(),
+          builder: (context) => OccupationPreference(),
         ),
       );
     } catch (e) {
@@ -67,7 +68,8 @@ class _LoginPageState extends State<LoginPage> {
                 SizedBox(
                   height: 10.0,
                 ),
-                LoginButton(
+                BottomButton(
+                  description: 'Log in',
                   onTap: () async {
                     await _handleSignIn();
                   },
