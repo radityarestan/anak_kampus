@@ -1,7 +1,6 @@
 import 'package:anak_kampus/components/bottom_button.dart';
 import 'package:anak_kampus/constant.dart';
 import 'package:anak_kampus/pages/occupationpref.dart';
-import 'package:anak_kampus/pages/prefence_page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:shared_preferences/shared_preferences.dart';

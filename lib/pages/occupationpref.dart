@@ -1,10 +1,9 @@
 import 'package:anak_kampus/components/bottom_button2.dart';
 import 'package:anak_kampus/components/choice_box.dart';
 import 'package:anak_kampus/components/circle_pref.dart';
-import 'package:anak_kampus/components/bottom_button.dart';
 import 'package:anak_kampus/constant.dart';
-import 'package:anak_kampus/pages/prefence_page.dart';
 import 'package:anak_kampus/pages/programpref.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -20,6 +19,7 @@ enum Occupation {
 
 class _OccupationPreferenceState extends State<OccupationPreference> {
   Occupation selectedOccupation;
+  String selectedBg;
 
   @override
   Widget build(BuildContext context) {
@@ -55,9 +55,24 @@ class _OccupationPreferenceState extends State<OccupationPreference> {
                   SizedBox(
                     height: 20.0,
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
+                  CarouselSlider(
+                    options: CarouselOptions(
+                      enableInfiniteScroll: false,
+                      viewportFraction: 0.45,
+                      initialPage: 0,
+                      enlargeCenterPage: true,
+                      onPageChanged: (index, reason) {
+                        if (index == 0) {
+                          selectedOccupation = Occupation.SudahMahasiswa;
+                          selectedBg = 'saintek';
+                        } else {
+                          selectedOccupation = Occupation.CalonMahasiswa;
+                          selectedBg = 'soshum';
+                        }
+                        setState(() {});
+                      },
+                    ),
+                    items: [
                       ChoiceBox(
                         selectedBackground: selectedOccupation == null
                             ? 'null'
@@ -68,28 +83,16 @@ class _OccupationPreferenceState extends State<OccupationPreference> {
                             selectedOccupation == Occupation.SudahMahasiswa,
                         choiceDescription: 'Sudah Mahasiswa',
                         assetImage: 'images/Mahasiswa.png',
-                        onTap: () {
-                          setState(() {
-                            selectedOccupation = Occupation.SudahMahasiswa;
-                          });
-                        },
                       ),
-                      SizedBox(width: 10.0),
                       ChoiceBox(
-                        selectedBackground: selectedOccupation == null
-                            ? 'null'
-                            : selectedOccupation == Occupation.CalonMahasiswa
+                        selectedBackground:
+                            selectedOccupation == Occupation.CalonMahasiswa
                                 ? 'true'
                                 : 'false',
                         selectedCheck:
                             selectedOccupation == Occupation.CalonMahasiswa,
                         choiceDescription: 'Calon Mahasiswa',
                         assetImage: 'images/Calon Mahasiswa.png',
-                        onTap: () {
-                          setState(() {
-                            selectedOccupation = Occupation.CalonMahasiswa;
-                          });
-                        },
                       ),
                     ],
                   ),

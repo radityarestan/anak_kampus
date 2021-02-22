@@ -14,7 +14,7 @@ class BottomButton2 extends StatelessWidget {
       onTap: onTap,
       child: Container(
         width: width * 0.3,
-        height: 40.0,
+        height: 50.0,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20.0),
             border: Border.all(
@@ -26,7 +26,7 @@ class BottomButton2 extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                'Next',
+                'Pilih',
                 style: GoogleFonts.montserratAlternates(
                   textStyle: TextStyle(color: Colors.white, fontSize: 20.0),
                 ),

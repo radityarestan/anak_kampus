@@ -27,7 +27,7 @@ final kLoginButton = GoogleFonts.montserratAlternates(
 final kPrefHeadline = GoogleFonts.montserratAlternates(
   textStyle: TextStyle(
     color: Colors.white,
-    fontSize: 30.0,
+    fontSize: 28.0,
     fontWeight: FontWeight.bold,
   ),
 );

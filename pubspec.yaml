@@ -27,6 +27,7 @@ dependencies:
   cupertino_icons: ^1.0.0
   google_fonts: ^1.1.2
   google_sign_in: ^4.5.9
+  http: ^0.12.2
   shared_preferences: ^0.5.12+4
 
 dev_dependencies:

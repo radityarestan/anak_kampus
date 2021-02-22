@@ -1,9 +1,8 @@
 import 'package:anak_kampus/components/bottom_button2.dart';
 import 'package:anak_kampus/components/choice_box.dart';
 import 'package:anak_kampus/components/circle_pref.dart';
-import 'package:anak_kampus/components/bottom_button.dart';
 import 'package:anak_kampus/constant.dart';
-import 'package:anak_kampus/pages/prefence_page.dart';
+import 'package:anak_kampus/pages/universitypref.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -21,6 +20,7 @@ enum Cluster {
 
 class _ProgramPreferenceState extends State<ProgramPreference> {
   Cluster selectedCluster;
+  String selectedBg;
 
   @override
   Widget build(BuildContext context) {
@@ -65,31 +65,40 @@ class _ProgramPreferenceState extends State<ProgramPreference> {
                       onPageChanged: (index, reason) {
                         if (index == 0) {
                           selectedCluster = Cluster.Saintek;
+                          selectedBg = 'saintek';
                         } else if (index == 1) {
                           selectedCluster = Cluster.Soshum;
+                          selectedBg = 'soshum';
                         } else {
                           selectedCluster = Cluster.IlmuKesehatan;
+                          selectedBg = 'ilmu kesehatan';
                         }
                         setState(() {});
                       },
                     ),
                     items: [
                       ChoiceBox(
-                        selectedBackground: 'null',
+                        selectedBackground:
+                            selectedBg == 'saintek' ? 'true' : 'false',
                         selectedCheck:
                             selectedCluster == Cluster.Saintek ? true : false,
                         choiceDescription: 'Saintek',
                         assetImage: 'images/Saintek.png',
                       ),
                       ChoiceBox(
-                        selectedBackground: 'null',
+                        selectedBackground: selectedBg == null
+                            ? 'null'
+                            : selectedBg == 'soshum'
+                                ? 'true'
+                                : 'false',
                         selectedCheck:
                             selectedCluster == Cluster.Soshum ? true : false,
                         choiceDescription: 'Soshum',
                         assetImage: 'images/Soshum.png',
                       ),
                       ChoiceBox(
-                        selectedBackground: 'null',
+                        selectedBackground:
+                            selectedBg == 'ilmu kesehatan' ? 'true' : 'false',
                         selectedCheck: selectedCluster == Cluster.IlmuKesehatan
                             ? true
                             : false,
@@ -107,18 +116,22 @@ class _ProgramPreferenceState extends State<ProgramPreference> {
                           await SharedPreferences.getInstance();
                       if (selectedCluster == Cluster.Saintek) {
                         prefs.setString('cluster', 'Saintek');
-                      } else if (selectedCluster == Cluster.Soshum) {
-                        prefs.setString('cluster', 'Soshum');
-                      } else {
+                      } else if (selectedCluster == Cluster.IlmuKesehatan) {
                         prefs.setString('cluster', 'Ilmu Kesehatan');
+                      } else {
+                        prefs.setString('cluster', 'Soshum');
                       }
 
                       print('cluster: ' + prefs.getString('cluster'));
 
                       Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => PreferencePage()));
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => UniversityPreference(
+                            occupation: prefs.getString('occupation'),
+                          ),
+                        ),
+                      );
                     },
                   ),
                 ],
